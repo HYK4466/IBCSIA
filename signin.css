@@ -1,0 +1,30 @@
+body {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-control {
+  width: 110%;
+  margin-top: 10%;
+
+}
+
+.logo {
+  margin-left: 35%;
+}
+
+.btn-primary {
+  margin-left: 35%;
+  margin-top: 10%
+}
+
+.btn-secondary {
+  height: 25%;
+  width: 35%;
+  font-size: 14px;
+  margin-left: 34%;
+  margin-top: 10%
+}
