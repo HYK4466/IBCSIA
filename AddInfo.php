@@ -25,7 +25,6 @@ else {
   </ul>
   </nav>
 
-
   <div class="container">
     <div class="row justify-content-center">
     <h1>Add</h1>
