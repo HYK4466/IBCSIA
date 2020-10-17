@@ -1,15 +1,36 @@
-var script = document.createElement('script');
-script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
-script.type = 'text/javascript';
-document.getElementsByTagName('head')[0].appendChild(script);
+var spo = [];
+var wor = [];
 
 $.getJSON("sportlist.json", function(data) {
-  console.log(data);
+
   for(i = 0; i < data.sports.length; i++) {
-    document.getElementById('sports').innerHTML += "<option value=" + data.sports[i] + ">";
+    document.getElementById('search').innerHTML += "<option value=" + data.sports[i] + ">";
+    spo[i] = data.sports[i];
   }
 
   for (i = 0; i < data.workout.length; i++) {
-    document.getElementById('sports').innerHTML += "<option value=" + data.workout[i] + ">";
+    document.getElementById('search').innerHTML += "<option value=" + data.workout[i] + ">";
+    wor[i] = data.workout[i];
   }
 });
+
+
+/*function dropsearch(str) {
+  //console.log(str);
+
+  if (str.length == 0) {
+    document.getElementById("search").innerHTML = "";
+    return;
+  }
+  else {
+    for (i = 0; i < spo.length; i++) {
+        if (spo[i].search(str) != -1) {
+          console.log(spo[i]);
+          document.getElementById('search').innerHTML = "<option value=" + spo[i] + ">";
+        }
+        else {
+          document.getElementById('search').innerHTML = "<option value='No suggestion'>";
+        }
+    }
+  }
+}*/

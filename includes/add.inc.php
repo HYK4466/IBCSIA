@@ -13,9 +13,11 @@ if (isset($_POST['add'])) {
 
   $sport = $_POST['sport'];
   $date = $_POST['date'];
+  $starttime = $_POST['starttime'];
+  $stoptime = $_POST['stoptime'];
 
-  if(empty($sport) || empty($date)){
-    header("Location: ../AddInfo.php?error=emptyfields&sport=".$sport."&date=".$date);
+  if(empty($sport) || empty($date) || empty($starttime) || empty($stoptime)){
+    header("Location: ../AddInfo.php?error=emptyfields&sport=".$sport."&date=".$date."&starttime=".$starttime."&stoptime=".$stoptime);
     exit();
   }
   else {
@@ -32,7 +34,7 @@ if (isset($_POST['add'])) {
       $result = mysqli_stmt_get_result($stmt);
 
       if ($row = mysqli_fetch_assoc($result)) {
-        $sqlinsert = "INSERT INTO exevents (id, sportid, edate) VALUES (?, ?, ?);";
+        $sqlinsert = "INSERT INTO exevents (id, sportid, edate, startTime, stopTime) VALUES (?, ?, ?, ?, ?);";
         $rstmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($rstmt, $sqlinsert)) {
           die("Connection failed: ".mysqli_connect_error());
@@ -40,7 +42,7 @@ if (isset($_POST['add'])) {
           exit();
         }
         else {
-          mysqli_stmt_bind_param($rstmt, "iis", $_SESSION['id'], $row['sportsID'], $date);
+          mysqli_stmt_bind_param($rstmt, "iisss", $_SESSION['id'], $row['sportsID'], $date, $starttime, $stoptime);
           mysqli_stmt_execute($rstmt);
           header("Location: ../home.php?success=added");
           exit();

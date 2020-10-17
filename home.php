@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href='cal/main.css' rel='stylesheet' />
+    <script type="text/javascript" src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+    <link href='cal/main.css' rel='stylesheet'/>
     <script src='cal/main.js'></script>
     <title>Home Page</title>
   </head>
@@ -36,9 +37,18 @@
       </ul>
     </nav>
 
-    <div id="calendar">
-      <script type="text/javascript" src="calendar.js"></script>
+    <script type="text/javascript" src="calendar.js"></script>
+
+    <div id = 'container'>
+      <div id="calendar">
+      </div>
+
+      <div id="details">
+
+      </div>
     </div>
+
+
 
   </body>
 </html>
