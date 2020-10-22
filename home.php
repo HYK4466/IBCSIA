@@ -1,9 +1,18 @@
 <?php
   session_start();
+  // why does this work
+  $cookie_number = 'id';
+  $cookie_id = $_SESSION['id'];
+  setcookie($cookie_number, $cookie_id, time() + 86400, "/");
   if (isset($_SESSION['id'])) {
-    echo "<script>
-      alert('Logged In');
-    </script>";
+    if (isset($_COOKIE[$cookie_number])) {
+
+    }
+    else {
+      echo "<script>
+        alert('Logged In');
+        </script>";
+    }
   }
   else {
     header("Location: index.php?error=nosession");
@@ -27,14 +36,21 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <form class="adding" action="AddInfo.php" method="post">
+          <!--<form class="adding" action="AddInfo.php" method="post">
             <button type="submit" class="btn" name="add">Add</button>
-          </form>
+          </form>-->
+          <a class="nav-link" href="AddInfo.php">Add</a>
         </li>
-      </ul>
+        <li class="nav-item active">
+          <!--<form class="editing" action="edit.php" method="post">
+            <button type="submit" class="btn" name="edit">Edit</button>
+          </form>-->
+          <a class="nav-link" href="editFH.php">Delete</a>
+        </li>
+    </ul>
     </nav>
 
     <script type="text/javascript" src="calendar.js"></script>
@@ -43,8 +59,7 @@
       <div id="calendar">
       </div>
 
-      <div id="details">
-
+      <div id="details" style="display: flex; justify-content: center; align-items: center;">
       </div>
     </div>
 

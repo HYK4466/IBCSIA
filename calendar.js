@@ -1,9 +1,10 @@
   var xhttp;
-  var arr;
+  var dates;
    xhttp = new XMLHttpRequest();
    xhttp.onreadystatechange = function() {
      if (this.readyState == 4 && this.status == 200) {
        run();
+
     }
    };
    xhttp.open("GET", "includes/getCalEv.inc.php", true);
@@ -37,12 +38,21 @@ function run() {
               $.getJSON("getevent.json", function(data) {
                   for (i = 0; i < data.length; i++) {
                     if (data[i].start == info.event.startStr) {
-                      detailedInfo =  "Sport: " + data[i].title + "<br>" + "Start Time: " + data[i].start + "<br>" + "Stop Time: " + data[i].stop + "<br>";
-                      document.getElementById('details').innerHTML = detailedInfo;
+                      detailedInfo =  "Sport: " + data[i].title + "<br>" + "Date: " + data[i].start + "<br>" + "Start Time: " + data[i].sTime + "<br>" + "Stop Time: " + data[i].stTime + "<br>";
+                      document.getElementById('details').innerHTML = detailedInfo + "<br> ";
+                      document.getElementById('details').innerHTML += "<form class='edit' action='edit.php' method='post'>  <button type='submit' class='btn' name='add'>Edit/Delete</button> </form>";
+                      createCookie("sport", data[i].title);
+                      createCookie("date", data[i].start);
+                      createCookie("sTime", data[i].sTime);
+                      createCookie("stTime", data[i].stTime);
                     }
                   }
               });
           }
         });
         calendar.render();
+}
+
+function createCookie(name, value) {
+  document.cookie = name + "=" + value +";";
 }

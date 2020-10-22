@@ -6,6 +6,7 @@ else {
   exit();
 }
 ?>
+
 <html>
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -30,17 +31,21 @@ else {
 
   <div class="container">
     <div class="row justify-content-center">
-    <h1>Add</h1>
-    <form class="col-12" action="includes/add.inc.php" method="post">
-        <input autocomplete="off" list="search" type="text" class="dropdown" name="sport" placeholder="Sports">
+    <h1>Delete</h1>
+    <form class="col-12" action="includes/edit.inc.php" method="post">
+        <input autocomplete="off" id="sporttype" list="search" type="text" class="dropdown" name="sport" placeholder="Sports">
         <datalist id="search">
           <script type = "text/javascript" src="sport.js"></script>
         </datalist>
-        <input type="date" name="date" placeholder="Start Date">
-        <input type="time" name="starttime" placeholder="xx:xx">
-        <input type="time" name="stoptime" placeholder="xx:xx">
-        <button type="submit" class="btn btn-primary" name="add">Add</button>
+        <input type="date" id="date" list="datedropdown" name="date" placeholder="Start Date">
+        <datalist id="datedropdown"></datalist>
+        <input type="time" id="starttime" name="starttime" placeholder="xx:xx">
+        <input type="time" id="stoptime" name="stoptime" placeholder="xx:xx">
+        <button type="submit" class="btn btn-primary" name="edit">Delete</button>
+        <script type="text/javascript" src="datedropdown.js"></script>
+
     </form>
+
 
   </div>
 </div>
