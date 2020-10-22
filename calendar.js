@@ -38,13 +38,18 @@ function run() {
               $.getJSON("getevent.json", function(data) {
                   for (i = 0; i < data.length; i++) {
                     if (data[i].start == info.event.startStr) {
+                      checkboxstring = "Not Done";
                       detailedInfo =  "Sport: " + data[i].title + "<br>" + "Date: " + data[i].start + "<br>" + "Start Time: " + data[i].sTime + "<br>" + "Stop Time: " + data[i].stTime + "<br>";
-                      document.getElementById('details').innerHTML = detailedInfo + "<br> ";
+                      if (data[i].checkbox == 1) {
+                        checkboxstring = "Done";
+                      }
+                      document.getElementById('details').innerHTML = detailedInfo + "Done: " + checkboxstring + "<br>";
                       document.getElementById('details').innerHTML += "<form class='edit' action='edit.php' method='post'>  <button type='submit' class='btn' name='add'>Edit/Delete</button> </form>";
                       createCookie("sport", data[i].title);
                       createCookie("date", data[i].start);
                       createCookie("sTime", data[i].sTime);
                       createCookie("stTime", data[i].stTime);
+                      createCookie("checkbox", data[i].checkbox);
                     }
                   }
               });

@@ -4,7 +4,7 @@ console.log(cookieInfoArr);
 
 for (i = 0; i < cookieInfoArr.length; i++) {
   cookieAssocArray = cookieInfoArr[i].split("=");
-  name = cookieAssocArray[0];
+  name = cookieAssocArray[0].trim();
   value = cookieAssocArray[1];
 
   console.log(name);
@@ -13,13 +13,13 @@ for (i = 0; i < cookieInfoArr.length; i++) {
     case "sport":
       document.getElementById("sporttype").value = value;
       break;
-    case " date":
+    case "date":
       document.getElementById("date").value = value;
       break;
-    case " sTime":
+    case "sTime":
       document.getElementById("starttime").value = value;
       break;
-    case " stTime":
+    case "stTime":
       document.getElementById("stoptime").value = value;
       break;
     default:

@@ -31,28 +31,20 @@ else {
 
   <div class="container">
     <div class="row justify-content-center">
-    <h1>Edit/Delete</h1>
+    <h1>Delete</h1>
     <form class="col-12" action="includes/edit.inc.php" method="post">
         <input autocomplete="off" id="sporttype" list="search" type="text" class="dropdown" name="sport" placeholder="Sports">
         <datalist id="search">
+          <script type = "text/javascript" src="sport.js"></script>
         </datalist>
-        <input type="date" id="date" name="date" placeholder="Start Date">
+        <input type="date" id="date" list="datedropdown" name="date" placeholder="Start Date">
+        <datalist id="datedropdown"></datalist>
         <input type="time" id="starttime" name="starttime" placeholder="xx:xx">
         <input type="time" id="stoptime" name="stoptime" placeholder="xx:xx">
-        <br>
-        <input autocomplete="off" list="search" type="text" class="dropdown" name="nsport" placeholder="Sports">
-        <datalist id="search">
-        </datalist>
-        <input type="date" name="ndate" placeholder="Start Date">
-        <input type="time" name="nstarttime" placeholder="xx:xx">
-        <input type="time" name="nstoptime" placeholder="xx:xx">
-        <input type="checkbox" id="ncheck" name="ncheck" value="true">
-        <label for="ncheck">Done</label><br>
-        <button type="submit" class="btn btn-primary" name="edit">Edit</button>
-        <button type="submit" class="btn btn-secondary" name="delete">Delete</button>
+        <button type="submit" class="btn btn-primary" name="delete">Delete</button>
+        <script type="text/javascript" src="datedropdown.js"></script>
+
     </form>
-    <script type = "text/javascript" src="sport.js"></script>
-    <script type = "text/javascript" src="cookieautofill.js"></script>
 
 
   </div>

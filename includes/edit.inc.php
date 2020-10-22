@@ -22,6 +22,7 @@ else {
     $ndate = $_POST['ndate'];
     $nstarttime = $_POST['nstarttime'];
     $nstoptime = $_POST['nstoptime'];
+    $ncheck = $_POST['ncheck'];
 
     if (empty($nsports) || empty($ndate) || empty($nstarttime) || empty($nstoptime) || empty($sports) || empty($date) || empty($starttime) || empty($stoptime) || empty($sessionID)) {
       header("Location: ../home.php?fieldincomplete");
@@ -41,14 +42,18 @@ else {
         $row = mysqli_fetch_assoc($result);
 
         //Update
-        $sqlUpdate = "UPDATE exevents SET sportid=?, edate=?, startTime=?, stopTime=? WHERE id=? AND edate=? AND startTime=? AND stopTime=?;";
+        $sqlUpdate = "UPDATE exevents SET sportid=?, edate=?, startTime=?, stopTime=?, checkbox=? WHERE id=? AND edate=? AND startTime=? AND stopTime=?;";
         $ustmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($ustmt, $sqlUpdate)) {
           header("Location: ../home.php?error=sqlerror");
           exit();
         }
         else {
-          mysqli_stmt_bind_param($ustmt, "isssisss", $row['sportsID'], $ndate, $nstarttime, $nstoptime, $sessionID, $date, $starttime, $stoptime);
+          $tempcheck = 0;
+          if (!empty($ncheck)) {
+            $tempcheck = 1;
+          }
+          mysqli_stmt_bind_param($ustmt, "isssiisss", $row['sportsID'], $ndate, $nstarttime, $nstoptime, $tempcheck,$sessionID, $date, $starttime, $stoptime);
           mysqli_stmt_execute($ustmt);
           header("Location: ../home.php?success=updated");
           exit();

@@ -38,7 +38,7 @@ else {
         mysqli_stmt_execute($pstmt);
         $resultName = mysqli_stmt_get_result($pstmt);
         if ($rowResult = mysqli_fetch_assoc($resultName)) {
-          array_push($a, array('title' => $rowResult['sportsName'], 'start' => $stringDate, 'stop' => $stringsDate, 'id' => $row["id"], 'sTime' => $row['startTime'], 'stTime' => $row['stopTime']));
+          array_push($a, array('title' => $rowResult['sportsName'], 'start' => $stringDate, 'stop' => $stringsDate, 'id' => $row["id"], 'sTime' => $row['startTime'], 'stTime' => $row['stopTime'], 'checkbox' => $row['checkbox']));
         }
       }
 

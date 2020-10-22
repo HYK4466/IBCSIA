@@ -4,7 +4,18 @@
     header("Location: home.php");
     exit();
   }
-  else {}
+  else {
+    
+  $uri = $_SERVER['REQUEST_URI'];
+  $token1 = "wrongpassword";
+  $token2 = "nouser";
+
+  if (strpos($uri, $token1) || strpos($uri, $token2)) {
+    echo "<script> alert('Check password and username again.'); </script>";
+  }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +38,8 @@
       <form class="col-12" action="includes/login.inc.php" method="post">
         <img class="logo" src="logo.png" width="80px" height="80px">
         <div class="form-group">
-        <input type="text" class="form-control" name="userID" placeholder="Email or Username">
-        <input type="password" class="form-control" name="passwd" placeholder="Password">
+        <input type="text" class="form-control" name="userID" placeholder="Email or Username" required>
+        <input type="password" class="form-control" name="passwd" placeholder="Password" required>
       </div>
       <div>
         <button type="submit" class="btn btn-primary" name="login">Sign In</button>

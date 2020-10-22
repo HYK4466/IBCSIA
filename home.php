@@ -48,14 +48,22 @@
           <!--<form class="editing" action="edit.php" method="post">
             <button type="submit" class="btn" name="edit">Edit</button>
           </form>-->
-          <a class="nav-link" href="editFH.php">Delete</a>
+          <a class="nav-link" href="delete.php">Delete</a>
+        </li>
+        <li class="nav-item active">
+        <!--<form class="editing" action="includes/logout.inc.php" method="post">
+            <button type="submit" class="btn" name="logout">Log Out</button>
+          </form>-->
+
+          <a class="nav-link" href="includes/logout.inc.php">Log Out</a>
+
         </li>
     </ul>
     </nav>
 
     <script type="text/javascript" src="calendar.js"></script>
 
-    <div id = 'container'>
+    <div id='container'>
       <div id="calendar">
       </div>
 

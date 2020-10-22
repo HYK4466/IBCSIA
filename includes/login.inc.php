@@ -9,6 +9,9 @@ if (isset($_POST['login'])) {
 
   if (empty($email) || empty($password)) {
     header("Location: ../index.php?error=emptyfields");
+    echo "<script type = 'text/javascript'>
+    alert('Empty fields! Please enter all fields.');
+    </script>";
     exit();
   }
   else {
@@ -27,7 +30,7 @@ if (isset($_POST['login'])) {
       if ($row = mysqli_fetch_assoc($result)) {
         $pwdcheck = password_verify($password, $row['password']);
         if ($pwdcheck == false) {
-          header("Location: ../index.php?error=wrong password");
+          header("Location: ../index.php?error=wrongpassword");
           exit();
         }
         else if($pwdcheck == true) {
