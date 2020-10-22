@@ -88,8 +88,6 @@
           }
         }
       }
-
-
     }
 
     mysqli_stmt_close($pstatement);
