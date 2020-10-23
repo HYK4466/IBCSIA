@@ -1,15 +1,25 @@
-  var xhttp;
-  var dates;
-   xhttp = new XMLHttpRequest();
-   xhttp.onreadystatechange = function() {
-     if (this.readyState == 4 && this.status == 200) {
-       run();
+var xhttp2;
+var goals;
+xhttp2 = new XMLHttpRequest();
+xhttp2.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    document.getElementById('goal').style.textAlign = 'center';
+    document.getElementById('goal').innerHTML = "Monthly Goal: " + this.responseText;
+ }
+};
+xhttp2.open("GET", "includes/getGoals.inc.php", true);
+xhttp2.send();
 
-    }
-   };
-   xhttp.open("GET", "includes/getCalEv.inc.php", true);
-   xhttp.send();
 
+var xhttp;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    run();
+  }
+};
+xhttp.open("GET", "includes/getCalEv.inc.php", true);
+xhttp.send();
 
 
 document.addEventListener('DOMContentLoaded', function(){});
@@ -33,6 +43,8 @@ function run() {
               document.getElementById('calendar').style.width = "50%";
               document.getElementById('calendar').style.cssFloat = 'left';
               document.getElementById('details').style.cssFloat = 'right';
+              document.getElementById('goal').style.textAlign = 'right';
+              document.getElementById('goal').style.marginRight = '133px';
               calendar.render();
               // get data print data: Sports, Day, Start Time, Stop Time, Edit/delete;
               $.getJSON("getevent.json", function(data) {

@@ -57,6 +57,13 @@
           <a class="nav-link" href="addActivity.php">Add Activity</a>
         </li>
         <li class="nav-item active">
+          <!--<form class="editing" action="edit.php" method="post">
+            <button type="submit" class="btn" name="edit">Edit</button>
+          </form>-->
+          <a class="nav-link" href="editProfile.php">Edit Profile</a>
+        </li>
+
+        <li class="nav-item active">
         <!--<form class="editing" action="includes/logout.inc.php" method="post">
             <button type="submit" class="btn" name="logout">Log Out</button>
           </form>-->
@@ -70,11 +77,15 @@
     <script type="text/javascript" src="calendar.js"></script>
 
     <div id='container'>
+      <div id="goal">
+
+      </div>
       <div id="calendar">
       </div>
 
       <div id="details" style="display: flex; justify-content: center; align-items: center;">
       </div>
+
     </div>
 
 
