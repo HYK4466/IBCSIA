@@ -11,6 +11,8 @@ else {
 
     require 'dbh.inc.php';
 
+    require 'editSportList.inc.php';
+
     $sessionID = $_SESSION['id'];
 
     $sports = $_POST['sport'];
@@ -24,15 +26,21 @@ else {
     $nstoptime = $_POST['nstoptime'];
     $ncheck = $_POST['ncheck'];
 
+    $sportList = file_get_contents("../sportlist.json");
+
     if (empty($nsports) || empty($ndate) || empty($nstarttime) || empty($nstoptime) || empty($sports) || empty($date) || empty($starttime) || empty($stoptime) || empty($sessionID)) {
-      header("Location: ../home.php?fieldincomplete");
+      header("Location: ../edit.php?emptyfields");
+      exit();
+    }
+    else if (!in_array($nsports, $sportList)) {
+      header("Location: ../edit.php?unknownsport");
       exit();
     }
     else {
       $sql = "SELECT sportsID FROM sports WHERE sportsName=?;";
       $pstmt = mysqli_stmt_init($conn);
       if (!mysqli_stmt_prepare($pstmt, $sql)) {
-        header("Location: ../home.php?error=sqlerror");
+        header("Location: ../edit.php?error=sqlerror");
         exit();
       }
       else {
@@ -45,7 +53,7 @@ else {
         $sqlUpdate = "UPDATE exevents SET sportid=?, edate=?, startTime=?, stopTime=?, checkbox=? WHERE id=? AND edate=? AND startTime=? AND stopTime=?;";
         $ustmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($ustmt, $sqlUpdate)) {
-          header("Location: ../home.php?error=sqlerror");
+          header("Location: ../edit.php?error=sqlerror");
           exit();
         }
         else {
@@ -67,6 +75,7 @@ else {
 
     require 'dbh.inc.php';
 
+
     $sessionID = $_SESSION['id'];
 
     $sports = $_POST['sport'];
@@ -75,14 +84,31 @@ else {
     $stoptime = $_POST['stoptime'];
 
     if (empty($sports) || empty($date) || empty($starttime) || empty($stoptime) ) {
-      header("Location: ../home.php?emptyfields");
+      header("Location: ../delete.php?emptyfields");
       exit();
     }
     else {
+      $sql = "SELECT * FROM exevents WHERE id=? AND edate=? AND startTime=? AND stopTime=?;";
+      $pstmt = mysqli_stmt_init($conn);
+      if (!mysqli_stmt_prepare($pstmt, $sql)) {
+        header("Location: ../delete.php?error=sqlerror");
+        exit();
+      }
+      else {
+        mysqli_stmt_bind_param($pstmt, "isss", $sessionID, $date, $starttime, $stoptime);
+        mysqli_stmt_execute($pstmt);
+        mysqli_stmt_store_result($pstmt);
+        $resultcheck = mysqli_stmt_num_rows($pstmt);
+        if (! ($resultcheck > 0)) {
+          header("Location: ../delete.php?error=DNE");
+          exit();
+        }
+      }
+
       $sql = "DELETE FROM exevents WHERE id=? AND edate=? AND startTime=? AND stopTime=?;";
       $pstmt = mysqli_stmt_init($conn);
       if (!mysqli_stmt_prepare($pstmt, $sql)) {
-        header("Location: ../home.php?error=sqlerror");
+        header("Location: ../delete.php?error=sqlerror");
         exit();
       }
       else {

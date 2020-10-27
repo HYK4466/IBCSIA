@@ -1,6 +1,18 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {}
+if (isset($_SESSION['id'])) {
+
+  $uri = $_SERVER['REQUEST_URI'];
+  $token = array("emptyfields", "unknownsport");
+
+
+  if (strpos($uri, $token[0])) {
+    echo "<script> alert('Fill in all the fields.'); </script>";
+  }
+  else if (strpos($uri, $token[1])) {
+    echo "<script> alert('Unknown sport. Add it through Add Activity.'); </script>";
+  }
+}
 else {
   header("Location: index.php?error=nosession");
   exit();
@@ -40,12 +52,12 @@ else {
         <input type="time" id="starttime" name="starttime" placeholder="xx:xx">
         <input type="time" id="stoptime" name="stoptime" placeholder="xx:xx">
         <br>
-        <input autocomplete="off" list="search" type="text" class="dropdown" name="nsport" placeholder="Sports">
+        <input autocomplete="off" list="search" type="text" class="dropdown" name="nsport" placeholder="Sports" required>
         <datalist id="search">
         </datalist>
-        <input type="date" name="ndate" placeholder="Start Date">
-        <input type="time" name="nstarttime" placeholder="xx:xx">
-        <input type="time" name="nstoptime" placeholder="xx:xx">
+        <input type="date" name="ndate" placeholder="Start Date" required>
+        <input type="time" name="nstarttime" placeholder="xx:xx" required>
+        <input type="time" name="nstoptime" placeholder="xx:xx" required>
         <input type="checkbox" id="ncheck" name="ncheck" value="true">
         <label for="ncheck">Done</label><br>
         <button type="submit" class="btn btn-primary" name="edit">Edit</button>

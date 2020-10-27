@@ -1,6 +1,21 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {}
+if (isset($_SESSION['id'])) {
+  $uri = $_SERVER['REQUEST_URI'];
+  $token = array("emptyfields", "sqlerror", "DNE");
+
+
+  if (strpos($uri, $token[0])) {
+    echo "<script> alert('Fill in all the fields'); </script>";
+  }
+  else if (strpos($uri, $token[1])) {
+    echo "<script> alert('Technical Error. Try again later.'); </script>";
+  }
+  else if (strpos($uri, $token[2])) {
+    echo "<script> alert('The event does not exist.'); </script>";
+  }
+
+}
 else {
   header("Location: index.php?error=nosession");
   exit();
@@ -33,14 +48,14 @@ else {
     <div class="row justify-content-center">
     <h1>Delete</h1>
     <form class="col-12" action="includes/edit.inc.php" method="post">
-        <input autocomplete="off" id="sporttype" list="search" type="text" class="dropdown" name="sport" placeholder="Sports">
+        <input autocomplete="off" id="sporttype" list="search" type="text" class="dropdown" name="sport" placeholder="Sports" required>
         <datalist id="search">
           <script type = "text/javascript" src="sport.js"></script>
         </datalist>
-        <input type="date" id="date" list="datedropdown" name="date" placeholder="Start Date">
+        <input type="date" id="date" list="datedropdown" name="date" placeholder="Start Date" required>
         <datalist id="datedropdown"></datalist>
-        <input type="time" id="starttime" name="starttime" placeholder="xx:xx">
-        <input type="time" id="stoptime" name="stoptime" placeholder="xx:xx">
+        <input type="time" id="starttime" name="starttime" placeholder="xx:xx" required>
+        <input type="time" id="stoptime" name="stoptime" placeholder="xx:xx" required>
         <button type="submit" class="btn btn-primary" name="delete">Delete</button>
         <script type="text/javascript" src="datedropdown.js"></script>
 
