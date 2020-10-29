@@ -44,7 +44,8 @@ function run() {
               document.getElementById('calendar').style.cssFloat = 'left';
               document.getElementById('details').style.cssFloat = 'right';
               document.getElementById('goal').style.textAlign = 'right';
-              document.getElementById('goal').style.marginRight = '133px';
+              document.getElementById('goal').style.marginRight = '140px';
+
               calendar.render();
               // get data print data: Sports, Day, Start Time, Stop Time, Edit/delete;
               $.getJSON("getevent.json", function(data) {

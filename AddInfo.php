@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['id'])) {
 
   $uri = $_SERVER['REQUEST_URI'];
-  $token = array("emptyfields", "sqlerror", "scheduleconflict");
+  $token = array("emptyfields", "sqlerror", "scheduleconflict", "startbigstop");
 
 
   if (strpos($uri, $token[0])) {
@@ -15,7 +15,9 @@ if (isset($_SESSION['id'])) {
   else if (strpos($uri, $token[2])) {
     echo "<script> alert('The time is already taken.'); </script>";
   }
-
+  else if (strpos($uri, $token[3])) {
+    echo "<script> alert('Start time has to be a previous time than Stop time.'); </script>";
+  }
 }
 else {
   header("Location: index.php?error=nosession");

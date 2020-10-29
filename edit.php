@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['id'])) {
 
   $uri = $_SERVER['REQUEST_URI'];
-  $token = array("emptyfields", "unknownsport");
+  $token = array("emptyfields", "unknownsport", "startbigstop");
 
 
   if (strpos($uri, $token[0])) {
@@ -11,6 +11,9 @@ if (isset($_SESSION['id'])) {
   }
   else if (strpos($uri, $token[1])) {
     echo "<script> alert('Unknown sport. Add it through Add Activity.'); </script>";
+  }
+  else if (strpos($uri, $token[2])) {
+    echo "<script> alert('Start time has to be a previous time than Stop time.'); </script>";  
   }
 }
 else {

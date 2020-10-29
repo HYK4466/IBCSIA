@@ -26,14 +26,21 @@ else {
     $nstoptime = $_POST['nstoptime'];
     $ncheck = $_POST['ncheck'];
 
-    $sportList = file_get_contents("../sportlist.json");
+    $nstart = new DateTime($nstarttime);
+    $nstop = new DateTime($nstoptime);
+
+    $strSportList = file_get_contents("../sportlist.json");
 
     if (empty($nsports) || empty($ndate) || empty($nstarttime) || empty($nstoptime) || empty($sports) || empty($date) || empty($starttime) || empty($stoptime) || empty($sessionID)) {
       header("Location: ../edit.php?emptyfields");
       exit();
     }
-    else if (!in_array($nsports, $sportList)) {
-      header("Location: ../edit.php?unknownsport");
+    else if (strpos($strSportList, $nsports) == false) {
+      header("Location: ../edit.php?unknownsport".$sportList);
+      exit();
+    }
+    else if ($nstart >= $nstop) {
+      header("Location: ../edit.php?error=startbigstop");
       exit();
     }
     else {

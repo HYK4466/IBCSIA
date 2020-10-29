@@ -15,16 +15,17 @@ else {
   mysqli_stmt_execute($pstmt);
   $result = mysqli_stmt_get_result($pstmt);
   $a = array();
+  $i = 0;
 
 
   $jsonfile = fopen("../sportlist.json", "w");
 
+
   while($row = mysqli_fetch_assoc($result)) {
 
-          array_push($a, array($row['sportsName']));
+          array_push($a, array("sport" => $row['sportsName']));
 
       }
-
 }
   //add array to JSON file after array has been complete.
   fwrite($jsonfile, json_encode($a));

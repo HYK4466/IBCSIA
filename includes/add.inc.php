@@ -16,8 +16,16 @@ if (isset($_POST['add'])) {
   $starttime = $_POST['starttime'];
   $stoptime = $_POST['stoptime'];
 
+  $start = new DateTime($starttime);
+  $stop = new DateTime($stoptime);
+
+
   if(empty($sport) || empty($date) || empty($starttime) || empty($stoptime)){
     header("Location: ../AddInfo.php?error=emptyfields&sport=".$sport."&date=".$date."&starttime=".$starttime."&stoptime=".$stoptime);
+    exit();
+  }
+  else if($start >= $stop) {
+    header("Location: ../AddInfo.php?error=startbigstop");
     exit();
   }
   else {

@@ -11,6 +11,6 @@ var xhttp;
 $.getJSON("sportlist.json", function(data) {
 
   for(i = 0; i < data.length; i++) {
-    document.getElementById('search').innerHTML += "<option value=" + data[i] + ">";
+    document.getElementById('search').innerHTML += "<option value=" + data[i].sport + ">";
   }
 });
