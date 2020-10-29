@@ -46,12 +46,27 @@ if (isset($_POST['update'])) {
 
     //update email
     if (!empty($email)) {
-
+        $sqlusr = "SELECT username FROM account WHERE email=?;";
+        $ustmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($ustmt, $sql)) {
+          header("Location: ../home.php?error=sqlerror");
+          exit();
+        }
+        else {
+          mysqli_stmt_bind_param($ustmt, "s", $email);
+          mysqli_stmt_execute($ustmt);
+          mysqli_stmt_store_result($ustmt);
+          $resultcheck = mysqli_stmt_num_rows($ustmt);
+          if ($resultcheck > 0) {
+            header("Location: ../editProfile.php?error=emailtaken");
+            exit();
+          }
+        }
 
         $sql = "UPDATE account SET email=? WHERE userID=?;";
         $pstmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($pstmt, $sql)) {
-          header("Location: ../home.php?error=sqlerror");
+          header("Location: ../editProfile.php?error=sqlerror");
           exit();
         }
         else {
@@ -67,7 +82,7 @@ if (isset($_POST['update'])) {
         $sqlusr = "SELECT username FROM account WHERE username=?;";
         $ustmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($ustmt, $sql)) {
-          header("Location: ../home.php?error=sqlerror");
+          header("Location: ../editProfile.php?error=sqlerror");
           exit();
         }
         else {
@@ -83,7 +98,7 @@ if (isset($_POST['update'])) {
         $sql = "UPDATE account SET username=? WHERE userID=?;";
         $pstmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($pstmt, $sql)) {
-          header("Location: ../home.php?error=sqlerror");
+          header("Location: ../editProfile.php?error=sqlerror");
           exit();
         }
         else {
@@ -100,7 +115,7 @@ if (isset($_POST['update'])) {
         $sql = "UPDATE account SET password=? WHERE userID=?;";
         $pstmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($pstmt, $sql)) {
-          header("Location: ../home.php?error=sqlerror");
+          header("Location: ../editProfile.php?error=sqlerror");
           exit();
         }
         else {
@@ -115,7 +130,7 @@ if (isset($_POST['update'])) {
         $sql = "UPDATE account SET goals=? WHERE userID=?;";
         $pstmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($pstmt, $sql)) {
-          header("Location: ../home.php?error=sqlerror");
+          header("Location: ../editProfile.php?error=sqlerror");
           exit();
         }
         else {

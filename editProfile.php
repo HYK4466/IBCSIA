@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['id'])) {
   $uri = $_SERVER['REQUEST_URI'];
-  $token = array("usrtaken", "InvalidEmail", "InvalidID", "shortpassword", "InvalidPasswordCheck", "Morethan30daysgoal", "emailtaken", "passwordnotretyped", "emptyfields");
+  $token = array("usrtaken", "InvalidEmail", "InvalidID", "shortpassword", "InvalidPasswordCheck", "Morethan30daysgoal", "emailtaken", "passwordnotretyped", "emptyfields", "sqlerror", "emailtaken");
 
 
   if (strpos($uri, $token[0])) {
@@ -31,6 +31,12 @@ if (isset($_SESSION['id'])) {
   }
   else if (strpos($uri, $token[8])) {
     echo "<script> alert('Fill in at least one field!'); </script>";
+  }
+  else if (strpos($uri, $token[9])) {
+    echo "<script> alert('Technical error! Please try again.'); </script>";
+  }
+  else if (strpos($uri, $token[10])) {
+    echo "<script> alert('Email already exists.'); </script>";
   }
 }
 else {

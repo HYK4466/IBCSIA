@@ -1,6 +1,22 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {}
+if (isset($_SESSION['id'])) {
+
+  $uri = $_SERVER['REQUEST_URI'];
+  $token = array("emptyfields", "sqlerror", "scheduleconflict");
+
+
+  if (strpos($uri, $token[0])) {
+    echo "<script> alert('Fill in all the fields'); </script>";
+  }
+  else if (strpos($uri, $token[1])) {
+    echo "<script> alert('Technical Error. Try again later.'); </script>";
+  }
+  else if (strpos($uri, $token[2])) {
+    echo "<script> alert('The time is already taken.'); </script>";
+  }
+
+}
 else {
   header("Location: index.php?error=nosession");
   exit();

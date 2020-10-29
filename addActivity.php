@@ -1,6 +1,20 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {}
+if (isset($_SESSION['id'])) {
+  $uri = $_SERVER['REQUEST_URI'];
+  $token = array("emptyfields", "sqlerror", "exists");
+
+
+  if (strpos($uri, $token[0])) {
+    echo "<script> alert('Fill in all the fields'); </script>";
+  }
+  else if (strpos($uri, $token[1])) {
+    echo "<script> alert('Technical Error. Try again later.'); </script>";
+  }
+  else if (strpos($uri, $token[2])) {
+    echo "<script> alert('The activity already exists.'); </script>";
+  }
+}
 else {
   header("Location: index.php?error=nosession");
   exit();
@@ -32,7 +46,7 @@ else {
     <div class="row justify-content-center">
     <h1>Add Activity</h1>
     <form class="col-12" action="includes/addActivity.inc.php" method="post">
-        <input autocomplete="off" id="activity" name="activity" placeholder="Activity">
+        <input autocomplete="off" id="activity" name="activity" placeholder="Activity" required>
         <button type="submit" class="btn btn-primary" name="addActivity">Add Activity</button>
     </form>
 

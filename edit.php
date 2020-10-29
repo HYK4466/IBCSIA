@@ -52,12 +52,12 @@ else {
         <input type="time" id="starttime" name="starttime" placeholder="xx:xx">
         <input type="time" id="stoptime" name="stoptime" placeholder="xx:xx">
         <br>
-        <input autocomplete="off" list="search" type="text" class="dropdown" name="nsport" placeholder="Sports" required>
+        <input autocomplete="off" list="search" type="text" class="dropdown" name="nsport" placeholder="Sports" >
         <datalist id="search">
         </datalist>
-        <input type="date" name="ndate" placeholder="Start Date" required>
-        <input type="time" name="nstarttime" placeholder="xx:xx" required>
-        <input type="time" name="nstoptime" placeholder="xx:xx" required>
+        <input type="date" name="ndate" placeholder="Start Date">
+        <input type="time" name="nstarttime" placeholder="xx:xx">
+        <input type="time" name="nstoptime" placeholder="xx:xx">
         <input type="checkbox" id="ncheck" name="ncheck" value="true">
         <label for="ncheck">Done</label><br>
         <button type="submit" class="btn btn-primary" name="edit">Edit</button>

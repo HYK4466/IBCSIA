@@ -48,14 +48,14 @@ else {
     <div class="row justify-content-center">
     <h1>Delete</h1>
     <form class="col-12" action="includes/edit.inc.php" method="post">
-        <input autocomplete="off" id="sporttype" list="search" type="text" class="dropdown" name="sport" placeholder="Sports" required>
+        <input autocomplete="off" id="sporttype" list="search" type="text" class="dropdown" name="sport" placeholder="Sports">
         <datalist id="search">
           <script type = "text/javascript" src="sport.js"></script>
         </datalist>
-        <input type="date" id="date" list="datedropdown" name="date" placeholder="Start Date" required>
+        <input type="date" id="date" list="datedropdown" name="date" placeholder="Start Date">
         <datalist id="datedropdown"></datalist>
-        <input type="time" id="starttime" name="starttime" placeholder="xx:xx" required>
-        <input type="time" id="stoptime" name="stoptime" placeholder="xx:xx" required>
+        <input type="time" id="starttime" name="starttime" placeholder="xx:xx">
+        <input type="time" id="stoptime" name="stoptime" placeholder="xx:xx">
         <button type="submit" class="btn btn-primary" name="delete">Delete</button>
         <script type="text/javascript" src="datedropdown.js"></script>
 

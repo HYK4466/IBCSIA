@@ -21,6 +21,23 @@ if (isset($_POST['add'])) {
     exit();
   }
   else {
+    $sqlsearch = "SELECT * FROM exevents WHERE startTime=? AND stopTime = ? AND edate=?;";
+    $pstmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($pstmt, $sqlsearch)) {
+      header("Location: ../AddInfo.php?error=sqlerror");
+      exit();
+    }
+    else {
+      mysqli_stmt_bind_param($pstmt, "sss", $starttime, $stoptime, $date);
+      mysqli_stmt_execute($pstmt);
+      mysqli_stmt_store_result($pstmt);
+      $resultrow = mysqli_stmt_num_rows($pstmt);
+      if ($resultrow > 0) {
+        header("Location: ../AddInfo.php?scheduleconflict");
+        exit();
+      }
+    }
+
     $sqlselect = "SELECT sportsID FROM sports WHERE sportsName = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sqlselect)) {
@@ -38,7 +55,7 @@ if (isset($_POST['add'])) {
         $rstmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($rstmt, $sqlinsert)) {
           die("Connection failed: ".mysqli_connect_error());
-          header("Location: ../AddInfo.php?error=sql");
+          header("Location: ../AddInfo.php?error=sqlerror");
           exit();
         }
         else {
