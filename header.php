@@ -5,7 +5,7 @@
     exit();
   }
   else {
-    
+
   $uri = $_SERVER['REQUEST_URI'];
   $token1 = "wrongpassword";
   $token2 = "nouser";
@@ -47,6 +47,9 @@
       </form>
       <form class="col-12" action="signup.php" method="post">
         <button type="submit" class="btn btn-secondary" name="signup">Sign Up</button>
+      </form>
+      <form class="col-12" action="forgot.php" method="post">
+        <button type="submit" class="btn btn-secondary" name="forgot">Forgot Password/Username</button>
       </form>
   </div>
 </div>
