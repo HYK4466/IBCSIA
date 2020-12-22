@@ -45,21 +45,17 @@ else if (strpos($uri, $token[6])) {
             <div class="row justify-content-center">
             <h1>Forgot Password/Username</h1>
             <form name="signupform" class="col-12" action="includes/forgot.inc.php" method="post">
-                <input type="text" class="form-control" name="Email" placeholder="Email" required>
-                <input type="text" class="form-control" name="Username" placeholder="Username" required>
+                <input type="text" class="form-control" name="reset" placeholder="Reset Code" required>
                 <!-- ADD MORE INPUTS -->
-                <button type="submit" class="btn btn-primary" name="find">Find my details</button>
+                <button type="submit" class="btn btn-primary" name="find">Reset my password</button>
             </form>
 
             <form action="index.php" method="post">
               <button type="submit" class="btn btn-secondary" name="signin">Sign In</button>
             </form>
-
           </div>
         </div>
-
         </main>
-
     </html>
 
 <?php

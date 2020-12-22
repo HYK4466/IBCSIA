@@ -81,6 +81,11 @@ else {
         <input type="text" class="form-control" name="Mgoal" placeholder="Monthly Goal (In days)">
         <!-- ADD MORE INPUTS -->
         <button type="submit" class="btn btn-primary" name="update">Update Profile</button>
+
+    </form>
+
+    <form name="updateform" class="col-12" action="confirm.php" method="post">
+      <button type="submit" class="btn btn-primary" name="delete">Delete Account</button>
     </form>
   </div>
 </div>

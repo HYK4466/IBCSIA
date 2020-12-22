@@ -4,6 +4,7 @@
 
     require 'dbh.inc.php';
 
+
     $email = $_POST['Email'];
     $username = $_POST['Username'];
     $password = $_POST['passwd'];
@@ -72,7 +73,7 @@
           exit();
         }
         else {
-          $sqlinsert = "INSERT INTO account (email, password, username, goals) VALUES(?, ?, ?, ?)";
+          $sqlinsert = "INSERT INTO account (email, password, username, goals, resetHash) VALUES(?, ?, ?, ?, ?)";
           $insertstmt = mysqli_stmt_init($conn);
           if (!mysqli_stmt_prepare($insertstmt, $sqlinsert)) {
             header("Location: ../signup.php?error=sqlerror");
@@ -80,10 +81,15 @@
           }
           else {
             $encryptPassword = password_hash($password, PASSWORD_DEFAULT);
-
-            mysqli_stmt_bind_param($insertstmt, "sssi", $email, $encryptPassword, $username, $goal);
+            do {
+              $code = randomString();
+              $encryptHash = password_hash($code, PASSWORD_DEFAULT);
+            } while (checkindatabase($encryptHash));
+            session_start();
+            $_SESSION['resetCode'] = $code;
+            mysqli_stmt_bind_param($insertstmt, "sssis", $email, $encryptPassword, $username, $goal, $encryptHash);
             mysqli_stmt_execute($insertstmt);
-            header("Location: ../home.php?signup=success");
+            header("Location: ../resetCode.php?signup=success");
             exit();
           }
         }
@@ -98,4 +104,45 @@
   else {
     header("Location: ../signup.php");
     exit();
+  }
+
+//check if $value is in database/account.
+  function checkindatabase($value) {
+
+    require 'dbh.inc.php';
+
+    $sql = "SELECT * FROM account WHERE resetHash=?;";
+    $pstmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($pstmt, $sql)) {
+      header("Location: ../index.php?error=sqlerror");
+      exit();
+    }
+    else {
+      mysqli_stmt_bind_param($pstmt, "s", $value);
+      mysqli_stmt_execute($pstmt);
+
+      $resultnum = mysqli_stmt_num_rows($pstmt);
+
+      if ($resultnum > 0) {
+        return true; // in database;
+      }
+      else {
+        return false; //not in database;
+      }
+    }
+
+    mysqli_stmt_close($pstmt);
+    mysqli_close($conn);
+  }
+
+//create random string for reset code.
+  function randomString() {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $random = "";
+
+    for ($i = 0; $i < 60; $i++) {
+      $index = rand(0, strlen($characters)-1); //61
+      $random .= $characters[$index];
+    }
+    return $random;
   }

@@ -5,24 +5,15 @@ if (isset($_POST['find'])) {
 
     require 'dbh.inc.php';
 
-    $email = $_POST['Email'];
-    $username = $_POST['Username'];
+    $reset = $_POST['reset'];
 
-    if (empty($email) && empty($username)) {
+    if (empty($reset)) {
       // code for sending back
-      header("Location: ../forgot.php?error=emptyfields&Email=".$email."&Username=".$username);
-      exit();
-    }
-    else if(!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL) ) {
-      header("Location: ../forgot.php?error=InvalidEmail&Username=".$username);
-      exit();
-    }
-    else if(!empty($username) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-      header("Location: ../forgot.php?error=InvalidID&Email=".$email);
+      header("Location: ../forgot.php?error=enter_RESETCODE");
       exit();
     }
     //update email
-    if (!empty($email)) {
+    else {
         $sqlusr = "SELECT username, password FROM account WHERE email=?;";
         $ustmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($ustmt, $sql)) {
@@ -49,7 +40,6 @@ if (isset($_POST['find'])) {
         else {
           mysqli_stmt_bind_param($pstmt, "si", $email, $_SESSION['id']);
           mysqli_stmt_execute($pstmt);
-
         }
     }
     //Update username

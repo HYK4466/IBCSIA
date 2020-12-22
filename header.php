@@ -7,11 +7,16 @@
   else {
 
   $uri = $_SERVER['REQUEST_URI'];
+  $token = array("Deleted", "wrongpassword", "nouser");
   $token1 = "wrongpassword";
   $token2 = "nouser";
 
-  if (strpos($uri, $token1) || strpos($uri, $token2)) {
+  if (strpos($uri, $token[1]) || strpos($uri, $token[2])) {
     echo "<script> alert('Check password and username again.'); </script>";
+  }
+
+  else if (strpos($uri, $token[0])) {
+    echo "<script> alert('Your account has been deleted. Good Bye!'); </script>";
   }
 }
 

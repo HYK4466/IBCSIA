@@ -1,10 +1,9 @@
 <?php
 
 session_start();
+require 'dbh.inc.php';
 
 if (isset($_POST['update'])) {
-
-    require 'dbh.inc.php';
 
     $email = $_POST['Email'];
     $username = $_POST['Username'];
@@ -145,6 +144,55 @@ if (isset($_POST['update'])) {
     mysqli_close($conn);
     header("Location: ../home.php?success=updated");
     exit();
+  }
+  else if (isset($_POST['delete'])) {
+
+    $resetCode = $_POST['reset'];
+
+    if (empty($resetCode)) {
+      header("Location: ../confirm.php?error=emptyfields&Email=".$resetCode);
+      exit();
+    }
+
+    $ssql = "SELECT resetHash FROM account WHERE userID =?;"; // change to resetcode
+    $dstmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($dstmt, $ssql)) {
+      header("Location: ../editProfile.php?error=sqlerror");
+      exit();
+    }
+    else {
+
+      mysqli_stmt_bind_param($dstmt, "i", $_SESSION['id']);
+      mysqli_stmt_execute($dstmt);
+
+      $result = mysqli_stmt_get_result($dstmt);
+
+      if ($row = mysqli_fetch_assoc($result)) {
+        $check = password_verify($resetCode, $row['resetHash']);
+        if ($check == false) {
+          header("Location: ../confirm.php?error=nomatch");
+          exit();
+        }
+        else{
+          $dsql = "DELETE FROM account WHERE userID=?;"; // change to resetcode
+          $cstmt = mysqli_stmt_init($conn);
+          if (!mysqli_stmt_prepare($cstmt, $dsql)) {
+            header("Location: ../editProfile.php?error=sqlerror");
+            exit();
+          }
+          else {
+            mysqli_stmt_bind_param($cstmt, "i", $_SESSION['id']);
+            mysqli_stmt_execute($cstmt);
+            session_unset();
+            session_destroy();
+            header("Location: ../index.php?success=Deleted");
+            exit();
+          }
+        }
+      }
+    }
+    mysqli_stmt_close($dstmt);
+    mysqli_close($conn);
   }
   else {
     header("Location: ../home.php");
