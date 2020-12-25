@@ -1,29 +1,11 @@
 <?php
-
+session_start();
 $uri = $_SERVER['REQUEST_URI'];
-$token = array("usrtaken", "InvalidEmail", "InvalidID", "shortpassword", "InvalidPasswordCheck", "Morethan30daysgoal", "emailtaken");
+$token = array();
 
-
-if (strpos($uri, $token[0])) {
-  echo "<script> alert('Username already taken.'); </script>";
-}
-else if (strpos($uri, $token[1])) {
-  echo "<script> alert('Email Invalid.'); </script>";
-}
-else if (strpos($uri, $token[2])) {
-  echo "<script> alert('Invalid Username.'); </script>";
-}
-else if (strpos($uri, $token[3])) {
-  echo "<script> alert('Password must be at least 8 characters long.'); </script>";
-}
-else if (strpos($uri, $token[4])) {
-  echo "<script> alert('The confirmation password does not match.'); </script>";
-}
-else if (strpos($uri, $token[5])) {
-  echo "<script> alert('Goal cannot exceed 30 days.'); </script>";
-}
-else if (strpos($uri, $token[6])) {
-  echo "<script> alert('Email Taken.'); </script>";
+if (isset($_SESSION['id'])) {
+  header("Location: index.php");
+  exit();
 }
 
 ?>
@@ -43,9 +25,22 @@ else if (strpos($uri, $token[6])) {
 
           <div class="container">
             <div class="row justify-content-center">
-            <h1>Forgot Password/Username</h1>
+            <h1>Forgot Password</h1>
             <form name="signupform" class="col-12" action="includes/forgot.inc.php" method="post">
-                <input type="text" class="form-control" name="reset" placeholder="Reset Code" required>
+                <input type="text" class="form-control" name="email" placeholder="Email" required>
+                <input type="password" class="form-control" id="reset" name="reset" placeholder="Reset Code" size="20" required>
+                <p class="form-control"><input type="checkbox" onclick="reveal()"> SHOW RESET CODE</p>
+                <script>
+                  function reveal() {
+                    var resetCode = document.getElementById("reset");
+                    if (resetCode.type == "password") {
+                      resetCode.type = "text";
+                    }
+                    else {
+                      resetCode.type = "password";
+                    }
+                  }
+                </script>
                 <!-- ADD MORE INPUTS -->
                 <button type="submit" class="btn btn-primary" name="find">Reset my password</button>
             </form>
