@@ -1,3 +1,5 @@
+sessionStorage.clear();
+
 var xhttp2;
 var goals;
 xhttp2 = new XMLHttpRequest();
