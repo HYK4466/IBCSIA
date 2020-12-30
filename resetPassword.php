@@ -21,9 +21,7 @@
   else if (strpos($uri, $token[3])) {
     echo "<script> alert('Check your password and confirm password again.'); </script>";
   }
-
 }
-
 
 ?>
 

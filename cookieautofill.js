@@ -1,4 +1,4 @@
-cookieInfoArr = document.cookie.split(";");
+/*cookieInfoArr = document.cookie.split(";");
 
 console.log(cookieInfoArr);
 
@@ -25,4 +25,12 @@ for (i = 0; i < cookieInfoArr.length; i++) {
     default:
       break;
   }
-}
+} */
+
+document.getElementById("sporttype").value = sessionStorage.getItem("sport");
+
+document.getElementById("date").value = sessionStorage.getItem("date");
+
+document.getElementById("starttime").value = sessionStorage.getItem("sTime");
+
+document.getElementById("stoptime").value = sessionStorage.getItem("stTime");

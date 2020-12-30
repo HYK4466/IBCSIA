@@ -58,19 +58,15 @@ function run() {
                       }
                       document.getElementById('details').innerHTML = detailedInfo + "Done: " + checkboxstring + "<br>";
                       document.getElementById('details').innerHTML += "<form class='edit' action='edit.php' method='post'>  <button type='submit' class='btn' name='add'>Edit/Delete</button> </form>";
-                      createCookie("sport", data[i].title);
-                      createCookie("date", data[i].start);
-                      createCookie("sTime", data[i].sTime);
-                      createCookie("stTime", data[i].stTime);
-                      createCookie("checkbox", data[i].checkbox);
+                      sessionStorage.setItem("sport", data[i].title);
+                      sessionStorage.setItem("date", data[i].start);
+                      sessionStorage.setItem("sTime", data[i].sTime);
+                      sessionStorage.setItem("stTime", data[i].stTime);
+                      sessionStorage.setItem("checkbox", data[i].checkbox);
                     }
                   }
               });
           }
         });
         calendar.render();
-}
-
-function createCookie(name, value) {
-  document.cookie = name + "=" + value +";";
 }
