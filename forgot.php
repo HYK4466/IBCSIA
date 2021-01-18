@@ -1,11 +1,32 @@
 <?php
 session_start();
-$uri = $_SERVER['REQUEST_URI'];
-$token = array();
 
 if (isset($_SESSION['id'])) {
   header("Location: index.php");
   exit();
+}
+
+$uri = $_SERVER['REQUEST_URI'];
+$token = array("enter_RESETCODE", "InvalidEmail", "sqlerror", "failed", "emailnotfound");
+
+if (strpos($uri, $token[0])) {
+  echo "<script> alert('Your input fields are not completely filled in.'); </script>";
+}
+
+else if (strpos($uri, $token[1])) {
+  echo "<script> alert('Invalid email address.'); </script>";
+}
+
+else if (strpos($uri, $token[2])) {
+  echo "<script> alert('Technical error! Try again later.'); </script>";
+}
+
+else if (strpos($uri, $token[3])) {
+  echo "<script> alert('Reset Code is incorrect. Failed!'); </script>";
+}
+
+else if (strpos($uri, $token[4])) {
+  echo "<script> alert('Email not found!'); </script>";
 }
 
 ?>
@@ -15,7 +36,7 @@ if (isset($_SESSION['id'])) {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="forgot.css">
 
   <!DOCTYPE html>
   <html lang="en" dir="ltr">

@@ -28,6 +28,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>IB CS IA</title>
@@ -36,12 +37,13 @@
 </head>
 
 <body>
+  <link rel="stylesheet" href="signin.css">
 
 <div class="container">
   <div class="row justify-content-center">
     <div class="align-items-center">
       <form class="col-12" action="includes/login.inc.php" method="post">
-        <img class="logo" src="logo.png" width="80px" height="80px">
+        <img class="logo" src="logo.png" width="100px" height="100px">
         <div class="form-group">
         <input type="text" class="form-control" name="userID" placeholder="Email or Username" required>
         <input type="password" class="form-control" name="passwd" placeholder="Password" required>
