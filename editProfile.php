@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['id'])) {
   $uri = $_SERVER['REQUEST_URI'];
-  $token = array("usrtaken", "InvalidEmail", "InvalidID", "shortpassword", "InvalidPasswordCheck", "Morethan30daysgoal", "emailtaken", "passwordnotretyped", "emptyfields", "sqlerror", "emailtaken");
+  $token = array("usrtaken", "InvalidEmail", "InvalidID", "shortpassword", "InvalidPasswordCheck", "Morethan30daysgoal", "emailtaken", "passwordnotretyped", "emptyfields", "sqlerror", "emailtaken", "InvalidName");
 
 
   if (strpos($uri, $token[0])) {
@@ -37,6 +37,9 @@ if (isset($_SESSION['id'])) {
   }
   else if (strpos($uri, $token[10])) {
     echo "<script> alert('Email already exists.'); </script>";
+  }
+  else if (strpos($uri, $token[11])) {
+    echo "<script> alert('Invalid Names.'); </script>";
   }
 }
 else {
@@ -76,6 +79,8 @@ else {
     <form name="updateform" class="col-12" action="includes/editProfile.inc.php" method="post">
         <input type="text" class="form-control" name="Email" placeholder="Email">
         <input type="text" class="form-control" name="Username" placeholder="Username">
+        <input type="text" class="form-control" name="first" placeholder="First Name">
+        <input type="text" class="form-control" name="last" placeholder="Last Name">
         <input type="password" class="form-control" name="passwd" placeholder="Password">
         <input type="password" class="form-control" name="confirmPasswd" placeholder="Confirm Password">
         <input type="text" class="form-control" name="Mgoal" placeholder="Monthly Goal (In days)">

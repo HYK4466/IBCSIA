@@ -10,8 +10,10 @@
     $password = $_POST['passwd'];
     $confirmPassword = $_POST['confirmPasswd'];
     $goal = $_POST['Mgoal'];
+    $first = $_POST['first'];
+    $last = $_POST['last'];
 
-    if (empty($email) || empty($username) || empty($password) || empty($confirmPassword) || empty($goal)) {
+    if (empty($email) || empty($username) || empty($password) || empty($confirmPassword) || empty($goal) || empty($first) || empty($last)) {
       // code for sending back
       header("Location: ../signup.php?error=emptyfields&Email=".$email."&Username=".$username);
       exit();
@@ -26,6 +28,10 @@
     }
     else if(!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
       header("Location: ../signup.php?error=InvalidID&Email=".$email);
+      exit();
+    }
+    else if(preg_match("/[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|;#]+/i", $first) || preg_match("/[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|;#]+/i", $last)) {
+      header("Location: ../signup.php?error=InvalidName");
       exit();
     }
     else if (strlen($password) < 8) {
@@ -73,7 +79,7 @@
           exit();
         }
         else {
-          $sqlinsert = "INSERT INTO account (email, password, username, goals, resetHash) VALUES(?, ?, ?, ?, ?)";
+          $sqlinsert = "INSERT INTO account (email, password, username, goals, resetHash, first, last) VALUES(?, ?, ?, ?, ?, ?, ?)";
           $insertstmt = mysqli_stmt_init($conn);
           if (!mysqli_stmt_prepare($insertstmt, $sqlinsert)) {
             header("Location: ../signup.php?error=sqlerror");
@@ -87,7 +93,7 @@
             } while (checkindatabase($encryptHash));
             session_start();
             $_SESSION['resetCode'] = $code;
-            mysqli_stmt_bind_param($insertstmt, "sssis", $email, $encryptPassword, $username, $goal, $encryptHash);
+            mysqli_stmt_bind_param($insertstmt, "sssisss", $email, $encryptPassword, $username, $goal, $encryptHash, $first, $last);
             mysqli_stmt_execute($insertstmt);
             header("Location: ../resetCode.php?signup=success");
             exit();

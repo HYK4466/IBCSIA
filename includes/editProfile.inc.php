@@ -10,9 +10,11 @@ if (isset($_POST['update'])) {
     $password = $_POST['passwd'];
     $confirmPassword = $_POST['confirmPasswd'];
     $goal = $_POST['Mgoal'];
+    $first = $_POST['first'];
+    $last = $_POST['last'];
 
 
-    if (empty($email) && empty($username) && empty($password) && empty($confirmPassword) && empty($goal)) {
+    if (empty($email) && empty($username) && empty($password) && empty($confirmPassword) && empty($goal) && empty($first) && empty($last)) {
       // code for sending back
       header("Location: ../editProfile.php?error=emptyfields&Email=".$email."&Username=".$username);
       exit();
@@ -29,6 +31,10 @@ if (isset($_POST['update'])) {
       header("Location: ../editProfile.php?error=InvalidID&Email=".$email);
       exit();
     }
+    else if(preg_match("/[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|;#]+/i", $first) || preg_match("/[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|;#]+/i", $last)) {
+      header("Location: ../editProfile.php?error=InvalidName");
+      exit();
+    }
     else if (!(empty($password) || empty($confirmPassword)) && strlen($password) < 8) {
       header("Location: ../editProfile.php?error=shortpassword");
       exit();
@@ -42,13 +48,12 @@ if (isset($_POST['update'])) {
       exit();
     }
 
-
     //update email
     if (!empty($email)) {
         $sqlusr = "SELECT username FROM account WHERE email=?;";
         $ustmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($ustmt, $sql)) {
-          header("Location: ../home.php?error=sqlerror");
+        if (!mysqli_stmt_prepare($ustmt, $sqlusr)) {
+          header("Location: ../editProfile.php?error=sqlerror");
           exit();
         }
         else {
@@ -137,6 +142,34 @@ if (isset($_POST['update'])) {
           mysqli_stmt_execute($pstmt);
         }
       }
+
+      if (!empty($first)) {
+
+          $sql = "UPDATE account SET first=? WHERE userID=?;";
+          $pstmt = mysqli_stmt_init($conn);
+          if (!mysqli_stmt_prepare($pstmt, $sql)) {
+            header("Location: ../editProfile.php?error=sqlerror");
+            exit();
+          }
+          else {
+            mysqli_stmt_bind_param($pstmt, "si", $first, $_SESSION['id']);
+            mysqli_stmt_execute($pstmt);
+          }
+        }
+
+        if (!empty($last)) {
+
+            $sql = "UPDATE account SET last=? WHERE userID=?;";
+            $pstmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($pstmt, $sql)) {
+              header("Location: ../editProfile.php?error=sqlerror");
+              exit();
+            }
+            else {
+              mysqli_stmt_bind_param($pstmt, "si", $last, $_SESSION['id']);
+              mysqli_stmt_execute($pstmt);
+            }
+          }
 
 
     mysqli_stmt_close($pstatement);

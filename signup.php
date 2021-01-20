@@ -1,7 +1,7 @@
 <?php
 
 $uri = $_SERVER['REQUEST_URI'];
-$token = array("usrtaken", "InvalidEmail", "InvalidID", "shortpassword", "InvalidPasswordCheck", "Morethan30daysgoal", "emailtaken");
+$token = array("usrtaken", "InvalidEmail", "InvalidID", "shortpassword", "InvalidPasswordCheck", "Morethan30daysgoal", "emailtaken", "InvalidName");
 
 
 if (strpos($uri, $token[0])) {
@@ -24,6 +24,9 @@ else if (strpos($uri, $token[5])) {
 }
 else if (strpos($uri, $token[6])) {
   echo "<script> alert('Email Taken.'); </script>";
+}
+else if (strpos($uri, $token[7])) {
+  echo "<script> alert('Invalid Names.'); </script>";
 }
 
 ?>
@@ -48,6 +51,8 @@ else if (strpos($uri, $token[6])) {
             <form name="signupform" class="col-12" action="includes/signup.inc.php" method="post">
                 <input type="text" class="form-control" name="Email" placeholder="Email" required>
                 <input type="text" class="form-control" name="Username" placeholder="Username" required>
+                <input type="text" class="form-control" name="first" placeholder="First Name" required>
+                <input type="text" class="form-control" name="last" placeholder="Last Name" required>
                 <input type="password" class="form-control" name="passwd" placeholder="Password" required>
                 <input type="password" class="form-control" name="confirmPasswd" placeholder="Confirm Password" required>
                 <input type="text" class="form-control" name="Mgoal" placeholder="Monthly Goal (In days)" required>

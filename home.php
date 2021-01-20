@@ -60,7 +60,7 @@
           <!--<form class="editing" action="edit.php" method="post">
             <button type="submit" class="btn" name="edit">Edit</button>
           </form>-->
-          <a class="nav-link" href="editProfile.php">Edit Profile</a>
+          <a class="nav-link" href="viewProfile.php">View Profile</a>
         </li>
 
         <li class="nav-item active">
