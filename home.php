@@ -62,7 +62,12 @@
           </form>-->
           <a class="nav-link" href="viewProfile.php">View Profile</a>
         </li>
-
+        <li class="nav-item active">
+          <!--<form class="editing" action="edit.php" method="post">
+            <button type="submit" class="btn" name="edit">Edit</button>
+          </form>-->
+          <a class="nav-link" href="statistics.php">View Information</a>
+        </li>
         <li class="nav-item active">
         <!--<form class="editing" action="includes/logout.inc.php" method="post">
             <button type="submit" class="btn" name="logout">Log Out</button>
