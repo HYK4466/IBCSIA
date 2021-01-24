@@ -19,6 +19,10 @@ if (isset($_POST['update'])) {
       header("Location: ../editProfile.php?error=emptyfields&Email=".$email."&Username=".$username);
       exit();
     }
+    else if ($email == $_SESSION['email']) {
+      header("Location: ../editProfile.php?error=emailissame");
+      exit();
+    }
     else if (empty($password) xor empty($confirmPassword)) {
       header("Location: ../editProfile.php?error=passwordnotretyped&Email=".$email."&Username=".$username);
       exit();
@@ -76,7 +80,6 @@ if (isset($_POST['update'])) {
         else {
           mysqli_stmt_bind_param($pstmt, "si", $email, $_SESSION['id']);
           mysqli_stmt_execute($pstmt);
-
         }
     }
 
@@ -85,7 +88,7 @@ if (isset($_POST['update'])) {
 
         $sqlusr = "SELECT username FROM account WHERE username=?;";
         $ustmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($ustmt, $sql)) {
+        if (!mysqli_stmt_prepare($ustmt, $sqlusr)) {
           header("Location: ../editProfile.php?error=sqlerror");
           exit();
         }
@@ -172,10 +175,10 @@ if (isset($_POST['update'])) {
           }
 
 
-    mysqli_stmt_close($pstatement);
+    mysqli_stmt_close($pstmt);
     mysqli_stmt_close($ustmt);
     mysqli_close($conn);
-    header("Location: ../home.php?success=updated");
+    header("Location: ../viewProfile.php?success=updated");
     exit();
   }
   else if (isset($_POST['delete'])) {

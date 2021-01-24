@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['id'])) {
   $uri = $_SERVER['REQUEST_URI'];
-  $token = array("usrtaken", "InvalidEmail", "InvalidID", "shortpassword", "InvalidPasswordCheck", "Morethan30daysgoal", "emailtaken", "passwordnotretyped", "emptyfields", "sqlerror", "emailtaken", "InvalidName");
+  $token = array("usrtaken", "InvalidEmail", "InvalidID", "shortpassword", "InvalidPasswordCheck", "Morethan30daysgoal", "emailtaken", "passwordnotretyped", "emptyfields", "sqlerror", "emailtaken", "InvalidName", "emailissame");
 
 
   if (strpos($uri, $token[0])) {
@@ -40,6 +40,9 @@ if (isset($_SESSION['id'])) {
   }
   else if (strpos($uri, $token[11])) {
     echo "<script> alert('Invalid Names.'); </script>";
+  }
+  else if (strpos($uri, $token[12])) {
+    echo "<script> alert('Email is the same.'); </script>";
   }
 }
 else {

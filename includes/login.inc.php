@@ -37,6 +37,7 @@ if (isset($_POST['login'])) {
           session_start();
           $_SESSION['id'] = $row['userID'];
           $_SESSION['userName'] = $row['username'];
+          $_SESSION['email'] = $row['email'];
 
           header("Location: ../home.php?login=success");
           exit();
