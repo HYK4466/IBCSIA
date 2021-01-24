@@ -24,7 +24,7 @@
     <div class="row justify-content-center">
     <h1>Your Information</h1>
         <table class="table" id="information">
-
+        
         </table>
 
         <script type="text/javascript" src="statistics.js"></script>
