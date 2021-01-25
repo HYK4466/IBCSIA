@@ -49,7 +49,7 @@ else {
   <div class="container">
     <div class="row justify-content-center">
     <h1>Add</h1>
-    <form class="col-12" action="includes/add.inc.php" method="post">
+    <form class="col-12" action="includes/add.inc.php" id="exInputs" method="post">
         <input autocomplete="off" list="search" type="text" class="dropdown" name="sport" placeholder="Sports">
         <datalist id="search">
           <script type = "text/javascript" src="sport.js"></script>
@@ -59,9 +59,13 @@ else {
         <input type="time" name="stoptime" placeholder="xx:xx">
         <button type="submit" class="btn btn-primary" name="add">Add</button>
     </form>
+    <button type="submit" onclick='autofill()' class='btn btn-secondary'> Use Frequently Choosed Options</button>
 
   </div>
 </div>
+
+<script type="text/javascript" src="frequentAutoFill.js"></script>
+
 
 </main>
 </html>
