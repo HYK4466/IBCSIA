@@ -45,11 +45,11 @@
             $frequentStopTime = $row['stopTime'];
           }
 
-          echo "<input autocomplete='off' list='search' type='text' class='dropdown' name='sport' placeholder='Sports' value=".$frequentSport.">";
+          echo "<input autocomplete='off' list='search' type='text' class='dropdown form-control' name='sport' placeholder='Sports' value=".$frequentSport.">";
           echo "<datalist id='search'>";
             echo "<script type = 'text/javascript' src='sport.js'></script>";
           echo "</datalist>";
-          echo "<input type='date' name='date' placeholder='Start Date'>";
-          echo "<input type='time' name='starttime' placeholder='xx:xx' value = ". $frequentStartTime . ">";
-          echo "<input type='time' name='stoptime' placeholder='xx:xx' value=". $frequentStopTime.">";
+          echo "<input type='date' class='form-control' name='date' placeholder='Start Date'>";
+          echo "<input type='time' class='form-control' name='starttime' placeholder='xx:xx' value = ". $frequentStartTime . ">";
+          echo "<input type='time' class='form-control' name='stoptime' placeholder='xx:xx' value=". $frequentStopTime.">";
           echo "<button type='submit' class='btn btn-primary' name='add'>Add</button>";

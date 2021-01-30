@@ -13,7 +13,7 @@ if (isset($_SESSION['id'])) {
     echo "<script> alert('Unknown sport. Add it through Add Activity.'); </script>";
   }
   else if (strpos($uri, $token[2])) {
-    echo "<script> alert('Start time has to be a previous time than Stop time.'); </script>";  
+    echo "<script> alert('Start time has to be a previous time than Stop time.'); </script>";
   }
 }
 else {
@@ -28,7 +28,32 @@ else {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
 
-  <title>Add</title>
+  <title>Edit Activity</title>
+  <style>
+  .form-control {
+    width: 30%;
+    margin-left: 380;
+    margin-top: 10;
+  }
+
+  .btn-primary {
+    margin-left: 510;
+  }
+
+  .btn-secondary {
+    margin-left: 500;
+    margin-top: 10;
+  }
+
+  .check {
+    margin-left: 390;
+  }
+
+  .copy {
+    margin-left: -30;
+  }
+
+  </style>
 
 
 </head>
@@ -48,24 +73,35 @@ else {
     <div class="row justify-content-center">
     <h1>Edit/Delete</h1>
     <form class="col-12" action="includes/edit.inc.php" method="post">
-        <input autocomplete="off" id="sporttype" list="search" type="text" class="dropdown" name="sport" placeholder="Sports">
+        <input autocomplete="off" id="sporttype" list="search" type="text" class="dropdown form-control" name="sport" placeholder="Sports" readonly>
         <datalist id="search">
         </datalist>
-        <input type="date" id="date" name="date" placeholder="Start Date">
-        <input type="time" id="starttime" name="starttime" placeholder="xx:xx">
-        <input type="time" id="stoptime" name="stoptime" placeholder="xx:xx">
+        <input type="date" id="date" name="date" class = "form-control" placeholder="Start Date" readonly>
+        <input type="time" id="starttime" name="starttime" class="form-control" placeholder="xx:xx" readonly>
+        <input type="time" id="stoptime" name="stoptime" class="form-control" placeholder="xx:xx" readonly>
+
         <br>
-        <input autocomplete="off" list="search" type="text" class="dropdown" name="nsport" placeholder="Sports" >
+        <input autocomplete="off" id="nsporttype" list="search" type="text" class="dropdown form-control" name="nsport" placeholder="Sports" required>
         <datalist id="search">
         </datalist>
-        <input type="date" name="ndate" placeholder="Start Date">
-        <input type="time" name="nstarttime" placeholder="xx:xx">
-        <input type="time" name="nstoptime" placeholder="xx:xx">
-        <input type="checkbox" id="ncheck" name="ncheck" value="true">
+        <input type="date" id="ndate" name="ndate" class="form-control"  placeholder="Start Date" required>
+        <input type="time" id="nstarttime"name="nstarttime" class="form-control" placeholder="xx:xx" required>
+        <input type="time" id="nstoptime" name="nstoptime" class="form-control" placeholder="xx:xx" required>
+        <input type="checkbox" id="ncheck" class="check" name="ncheck" value="true" >
         <label for="ncheck">Done</label><br>
         <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+        <br>
         <button type="submit" class="btn btn-secondary" name="delete">Delete</button>
     </form>
+    <button onclick="copy()" style="margin-top: 10;"class="btn btn-primary copy">Copy</button>
+    <script>
+      function copy() {
+        document.getElementById("nsporttype").value = document.getElementById("sporttype").value;
+        document.getElementById("ndate").value = document.getElementById("date").value;
+        document.getElementById("nstarttime").value = document.getElementById("starttime").value;
+        document.getElementById("nstoptime").value = document.getElementById("stoptime").value;
+      }
+    </script>
     <script type = "text/javascript" src="sport.js"></script>
     <script type = "text/javascript" src="cookieautofill.js"></script>
 

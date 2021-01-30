@@ -32,7 +32,22 @@ else {
 
   <title>Add</title>
 
+  <style>
+  .form-control {
+    width: 110%;
+    margin-left: -100;
+    margin-top: 10;
+  }
 
+  .btn-primary {
+    margin-top: 10;
+  }
+
+  .btn-secondary {
+    margin-left: -30%;
+  }
+
+  </style>
 </head>
 <main>
 
@@ -45,26 +60,32 @@ else {
     </li>
   </ul>
   </nav>
+<body>
 
   <div class="container">
     <div class="row justify-content-center">
-    <h1>Add</h1>
+    <div class="align-items-center">
+      <h1>Add</h1>
+
     <form class="col-12" action="includes/add.inc.php" id="exInputs" method="post">
-        <input autocomplete="off" list="search" type="text" class="dropdown" name="sport" placeholder="Sports">
+        <input autocomplete="off" list="search" type="text" class="dropdown form-control" name="sport" placeholder="Sports" required>
         <datalist id="search">
           <script type = "text/javascript" src="sport.js"></script>
         </datalist>
-        <input type="date" name="date" placeholder="Start Date">
-        <input type="time" name="starttime" placeholder="xx:xx">
-        <input type="time" name="stoptime" placeholder="xx:xx">
+        <input type="date" class="form-control" name="date" placeholder="Start Date" required>
+        <input type="time" class="form-control" name="starttime" placeholder="xx:xx" required>
+        <input type="time" class="form-control" name="stoptime" placeholder="xx:xx" required>
         <button type="submit" class="btn btn-primary" name="add">Add</button>
     </form>
-    <button type="submit" onclick='autofill()' class='btn btn-secondary'> Use Frequently Choosed Options</button>
-
+    <button onclick='autofill()' class="btn btn-secondary">Use Frequently Choosed Options</button>
+  </div>
   </div>
 </div>
-
 <script type="text/javascript" src="frequentAutoFill.js"></script>
+
+</body>
+
+
 
 
 </main>

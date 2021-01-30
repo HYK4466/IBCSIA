@@ -28,8 +28,24 @@ else {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
 
-  <title>Add</title>
+  <title>Delete</title>
+  <style>
+  .form-control {
+    width: 30%;
+    margin-left: 390;
+    margin-top: 10;
+  }
 
+  .btn-primary {
+    margin-left: 525;
+    margin-top: 10;
+  }
+
+  .btn-secondary {
+    margin-left: -30%;
+  }
+
+  </style>
 
 </head>
 <main>
@@ -48,14 +64,14 @@ else {
     <div class="row justify-content-center">
     <h1>Delete</h1>
     <form class="col-12" action="includes/edit.inc.php" method="post">
-        <input autocomplete="off" id="sporttype" list="search" type="text" class="dropdown" name="sport" placeholder="Sports">
+        <input autocomplete="off" id="sporttype" list="search" type="text" class="dropdown form-control" name="sport" placeholder="Sports">
         <datalist id="search">
           <script type = "text/javascript" src="sport.js"></script>
         </datalist>
-        <input type="date" id="date" list="datedropdown" name="date" placeholder="Start Date">
+        <input type="date" id="date" list="datedropdown" class="form-control" name="date" placeholder="Start Date">
         <datalist id="datedropdown"></datalist>
-        <input type="time" id="starttime" name="starttime" placeholder="xx:xx">
-        <input type="time" id="stoptime" name="stoptime" placeholder="xx:xx">
+        <input type="time" id="starttime" class="form-control" name="starttime" placeholder="xx:xx">
+        <input type="time" id="stoptime" class="form-control" name="stoptime" placeholder="xx:xx">
         <button type="submit" class="btn btn-primary" name="delete">Delete</button>
         <script type="text/javascript" src="datedropdown.js"></script>
 

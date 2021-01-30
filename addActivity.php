@@ -28,6 +28,19 @@ else {
 
   <title>Add Activities</title>
 
+  <style>
+  .form-control {
+    width: 30%;
+    margin-left: 390;
+    margin-top: 10;
+  }
+
+  .btn-primary {
+    margin-left: 505;
+    margin-top: 10;
+  }
+
+  </style>
 
 </head>
 <main>
@@ -46,7 +59,7 @@ else {
     <div class="row justify-content-center">
     <h1>Add Activity</h1>
     <form class="col-12" action="includes/addActivity.inc.php" method="post">
-        <input autocomplete="off" id="activity" name="activity" placeholder="Activity" required>
+        <input autocomplete="off" id="activity" class="form-control" name="activity" placeholder="Activity" required>
         <button type="submit" class="btn btn-primary" name="addActivity">Add Activity</button>
     </form>
 
