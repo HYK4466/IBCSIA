@@ -20,17 +20,29 @@
 
   <title>RESET CODE</title>
 
+  <style>
+    .form-control {
+      margin-left: 15%;
+    }
+
+    div {
+      white-space: nowrap;
+    }
+
+    label {
+      margin-left: 68%;
+      margin-top: 10px;
+    }
+  </style>
+
 </head>
         <main>
-
           <div class="container">
             <div class="row justify-content-center">
-            <h1>PLEASE SAVE THIS CODE. IT WILL BE USED WHEN YOU FORGET YOUR PASSWORD OR DELETE THIS ACCOUNT!</h1>
+            <h1>IMPORTANT: SAVE THIS CODE. IT WILL BE USED TO RESET PASSWORD AND DELETE ACCOUNT.</h1>
             <form name="signupform" class="col-12">
                 <br>
-                <h3>Reset Code: <input type="password" value=<?php echo $_SESSION['resetCode']; ?> id="reset" size="20" readonly> <input type="checkbox" onclick="reveal()">SHOW RESET CODE</h3>
-
-
+                <h5> <div>Reset Code: <input type="password" class="form-control" value=<?php echo $_SESSION['resetCode']; ?> id="reset" size="20" readonly></div><label> <input type="checkbox" onclick="reveal()">SHOW RESET CODE</label></h3>
 
                 <script>
                   function reveal() {
