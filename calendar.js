@@ -13,15 +13,15 @@ xhttp2.open("GET", "includes/getGoals.inc.php", true);
 xhttp2.send();
 
 
-var xhttp;
-xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
+var xhttp3;
+xhttp3 = new XMLHttpRequest();
+xhttp3.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     run();
   }
 };
-xhttp.open("GET", "includes/getCalEv.inc.php", true);
-xhttp.send();
+xhttp3.open("GET", "includes/getCalEv.inc.php", true);
+xhttp3.send();
 
 
 document.addEventListener('DOMContentLoaded', function(){});
