@@ -62,6 +62,21 @@ else {
 
   <title>Edit Profile</title>
 
+  <style>
+  .form-control {
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 10px;
+
+  }
+
+  .btn-primary {
+    margin-left: 44%;
+    margin-top: 10px;
+    width: 13%
+  }
+  </style>
+
 
 </head>
 <main>

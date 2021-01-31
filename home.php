@@ -33,6 +33,12 @@
     <link href='cal/main.css' rel='stylesheet'/>
     <script src='cal/main.js'></script>
     <title>Home Page</title>
+
+    <style>
+      .btn-primary {
+        margin-left: 50px;
+      }
+    </style>
   </head>
 
   <body>
@@ -88,7 +94,11 @@
       <div id="calendar">
       </div>
 
-      <div id="details" style="display: flex; justify-content: center; align-items: center;">
+
+        <table class="table" id="tdetails">
+
+        </table>
+        <div id="details" style="display: flex; justify-content: center; align-items: center;">
       </div>
 
     </div>

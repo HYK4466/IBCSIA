@@ -6,7 +6,7 @@ xhttp2 = new XMLHttpRequest();
 xhttp2.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     document.getElementById('goal').style.textAlign = 'center';
-    document.getElementById('goal').innerHTML = "Monthly Goal: " + this.responseText;
+    //document.getElementById('goal').innerHTML = "Monthly Goal: " + this.responseText;
  }
 };
 xhttp2.open("GET", "includes/getGoals.inc.php", true);
@@ -42,13 +42,19 @@ function run() {
 
           eventClick: function(info) {
               console.log(info);
+
               document.getElementById('calendar').style.width = "50%";
               document.getElementById('calendar').style.cssFloat = 'left';
               document.getElementById('details').style.cssFloat = 'right';
               document.getElementById('goal').style.textAlign = 'right';
               document.getElementById('goal').style.marginRight = '140px';
+              document.getElementById('tdetails').style.marginLeft = '65%';
+              document.getElementById('tdetails').style.marginTop = '50px';
+              document.getElementById('tdetails').style.width = "500px";
+              document.getElementById('details').style.marginRight = '20%';
 
               calendar.render();
+
               // get data print data: Sports, Day, Start Time, Stop Time, Edit/delete;
               $.getJSON("getevent.json", function(data) {
                   for (i = 0; i < data.length; i++) {
@@ -58,8 +64,8 @@ function run() {
                       if (data[i].checkbox == 1) {
                         checkboxstring = "Done";
                       }
-                      document.getElementById('details').innerHTML = detailedInfo + "Done: " + checkboxstring + "<br>";
-                      document.getElementById('details').innerHTML += "<form class='edit' action='edit.php' method='post'>  <button type='submit' class='btn' name='add'>Edit/Delete</button> </form>";
+                      document.getElementById('tdetails').innerHTML = "<tbody> <tr> <th scope='row'> Sports </th> <td>" + data[i].title + " </td> </tr> <tr> <th scope='row'> Date </th> <td>" + data[i].start + "</td> </tr> <tr> <th> Start Time </th> <td>" + data[i].sTime + "</td> </tr> <tr> <th> Stop Time </th> <td>" + data[i].stTime + " </td> </tr> <tr> <th> Done </th> <td>" + checkboxstring + "</tr> </tbody>"
+                      document.getElementById('details').innerHTML = "<form class='edit' action='edit.php' method='post'>  <button type='submit' class='btn btn-primary' name='add'>Edit/Delete</button> </form>";
                       sessionStorage.setItem("sport", data[i].title);
                       sessionStorage.setItem("date", data[i].start);
                       sessionStorage.setItem("sTime", data[i].sTime);

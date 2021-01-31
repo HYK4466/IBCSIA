@@ -31,7 +31,7 @@
         echo "<td>" . $row['first'] . " ". $row['last'] . "</td>";
         echo "</tr>";
         echo "<th scope='row'> Monthly Goals </th>";
-        echo "<td>" . $row['goals'] . "</td>";
+        echo "<td>" . $row['goals'] . " days</td>";
         echo "</tr>";
         echo "</tbdy>";
 

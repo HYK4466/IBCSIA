@@ -25,10 +25,27 @@ else {
 
   <title>Add</title>
 
+  <style>
+    .form-control {
+      width: 80%;
+      margin-left: 16%;
+      margin-top: 3%;
+    }
+
+    .check {
+      margin-left: 90%;
+      margin-top: 5;
+    }
+
+    .btn-primary {
+      margin-left: 45%;
+    }
+
+  </style>
 
 </head>
-<main>
 
+<main>
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
     <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
@@ -43,8 +60,9 @@ else {
     <div class="row justify-content-center">
     <h1>Delete Account</h1>
     <form name="updateform" class="col-12" action="includes/editProfile.inc.php" method="post">
+      <div class="inputs">
         <input type="password" class="form-control" id="reset" name="reset" placeholder="Reset Code" required>
-        <input type="checkbox" onclick="reveal()">SHOW RESET CODE
+        <label class="check"><input type="checkbox" id="check" name="check" onclick="reveal()">Reveal</label>
         <script>
           function reveal() {
             var resetCode = document.getElementById("reset");
@@ -56,8 +74,8 @@ else {
             }
           }
         </script>
-        <!-- ADD MORE INPUTS -->
         <button type="submit" class="btn btn-primary" name="delete">Delete Account</button>
+        <div>
     </form>
   </div>
 </div>
